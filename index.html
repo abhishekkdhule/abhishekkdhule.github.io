@@ -3,142 +3,197 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Abhishek Dhule | Software Engineer</title>
+<title>Abhishek Dhule | Backend & Cloud Engineer</title>
 
 <style>
-    :root {
-        --primary: #111827;
-        --accent: #2563eb;
-        --light: #f9fafb;
-        --gray: #6b7280;
-    }
+:root {
+    --bg: #0d0d0d;
+    --card: rgba(255,255,255,0.05);
+    --accent: #3b82f6;
+    --text: #f5f5f5;
+    --muted: #9ca3af;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', sans-serif;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    body {
-        background: var(--light);
-        color: var(--primary);
-        line-height: 1.6;
-        scroll-behavior: smooth;
-    }
+body {
+    background: linear-gradient(180deg, #0d0d0d, #111827);
+    color: var(--text);
+    scroll-behavior: smooth;
+}
 
-    header {
-        background: white;
-        position: fixed;
+header {
+    position: fixed;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 400;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: #111;
         width: 100%;
-        top: 0;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        z-index: 1000;
+        flex-direction: column;
+        text-align: center;
+        display: none;
+        padding: 20px 0;
     }
 
-    nav {
-        max-width: 1100px;
-        margin: auto;
+    .nav-links.active {
         display: flex;
-        justify-content: space-between;
-        padding: 1rem;
     }
 
-    nav a {
-        text-decoration: none;
-        color: var(--primary);
-        margin-left: 20px;
-        font-weight: 500;
-        transition: color 0.3s ease;
+    .menu-toggle {
+        display: flex;
     }
+}
 
-    nav a:hover {
-        color: var(--accent);
-    }
+/* Sections */
+section {
+    max-width: 1100px;
+    margin: 120px auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
 
-    section {
-        max-width: 1100px;
-        margin: 100px auto;
-        padding: 20px;
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 0.8s ease;
-    }
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-    section.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Hero */
+.hero {
+    text-align: center;
+    margin-top: 150px;
+}
 
-    .hero {
-        text-align: center;
-        margin-top: 150px;
-    }
+.hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #3b82f6, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 3s infinite alternate;
+}
 
-    .hero h1 {
-        font-size: 2.8rem;
-    }
+@keyframes glow {
+    from { filter: drop-shadow(0 0 5px #3b82f6); }
+    to { filter: drop-shadow(0 0 20px #9333ea); }
+}
 
-    .hero span {
-        color: var(--accent);
-    }
+.hero p {
+    margin-top: 15px;
+    color: var(--muted);
+}
 
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: var(--accent);
-        color: white;
-        text-decoration: none;
-        border-radius: 6px;
-        transition: 0.3s ease;
-    }
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 28px;
+    background: var(--accent);
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
 
-    .btn:hover {
-        background: #1e40af;
-    }
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(59,130,246,0.4);
+}
 
-    .card {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 20px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        transition: transform 0.3s ease;
-    }
+/* Cards */
+.card {
+    background: var(--card);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.4s ease;
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-    }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
 
-    .skills span {
-        display: inline-block;
-        background: #e5e7eb;
-        padding: 8px 12px;
-        margin: 6px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-    }
+/* Skills */
+.skills span {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    padding: 8px 14px;
+    margin: 6px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
 
-    footer {
-        text-align: center;
-        padding: 30px;
-        background: white;
-        margin-top: 50px;
-        font-size: 0.9rem;
-        color: var(--gray);
-    }
+.skills span:hover {
+    background: var(--accent);
+}
 
-    @media(max-width: 768px) {
-        nav {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        nav a {
-            margin: 10px 0;
-        }
-    }
+footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+}
 </style>
 </head>
 
@@ -146,8 +201,13 @@
 
 <header>
     <nav>
-        <div><strong>Abhishek Dhule</strong></div>
-        <div>
+        <div class="logo">Abhishek Dhule</div>
+        <div class="menu-toggle" id="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links" id="navLinks">
             <a href="#about">About</a>
             <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
@@ -157,32 +217,28 @@
 </header>
 
 <section class="hero">
-    <h1>Hi, I'm <span>Abhishek Dhule</span></h1>
-    <p>Backend Engineer | AWS Specialist | ETL & Data Systems Expert</p>
-    <a href="#projects" class="btn">View My Work</a>
+    <h1>Backend & Cloud Engineer</h1>
+    <p>Building scalable systems with Python & AWS</p>
+    <a href="#projects" class="btn">Explore My Work</a>
 </section>
 
 <section id="about">
     <h2>About Me</h2>
     <div class="card">
         <p>
-            I am a Software Engineer with 4+ years of experience specializing in Python, AWS, 
-            and backend system architecture. I design scalable systems, build ETL pipelines, 
-            and develop cloud-native applications primarily in financial services domains.
+            Software Engineer with 4+ years experience designing backend systems,
+            event-driven architectures, and scalable ETL pipelines.
+            Specialized in AWS CDK, Glue, Lambda, and distributed processing.
         </p>
-        <br/>
         <div class="skills">
             <span>Python</span>
-            <span>AWS CDK</span>
-            <span>Lambda</span>
-            <span>Glue</span>
-            <span>S3</span>
+            <span>AWS</span>
+            <span>CDK</span>
+            <span>PySpark</span>
             <span>FastAPI</span>
-            <span>Django</span>
             <span>Redis</span>
             <span>RabbitMQ</span>
-            <span>PySpark</span>
-            <span>ETL Pipelines</span>
+            <span>System Design</span>
         </div>
     </div>
 </section>
@@ -190,14 +246,12 @@
 <section id="experience">
     <h2>Experience</h2>
     <div class="card">
-        <h3>Software Engineer – Financial Services Firm (US Based)</h3>
-        <p><strong>Domain:</strong> Insurance & Asset Management</p>
-        <br/>
+        <h3>Software Engineer – US Financial Services Firm</h3>
         <ul>
-            <li>Built scalable ETL systems using AWS Glue & PySpark.</li>
-            <li>Implemented RabbitMQ-based lead processing reducing failures by 10%.</li>
-            <li>Designed AWS CDK infrastructure for backend services.</li>
-            <li>Optimized systems using Redis caching for latency reduction.</li>
+            <li>Built distributed ETL pipelines using AWS Glue & Spark</li>
+            <li>Reduced lead submission failures by 10% via queuing system</li>
+            <li>Designed cloud infrastructure using AWS CDK</li>
+            <li>Optimized performance using Redis caching</li>
         </ul>
     </div>
 </section>
@@ -206,69 +260,55 @@
     <h2>Freelance Showcase Projects</h2>
 
     <div class="card">
-        <h3>Lead Processing Platform</h3>
-        <p>
-            Cloud-based event-driven architecture using AWS Lambda, SQS, and RabbitMQ 
-            to handle high-volume lead ingestion and provider distribution.
-        </p>
+        <h3>Event-Driven Lead Platform</h3>
+        <p>High-scale cloud system handling asynchronous lead processing with reliability guarantees.</p>
     </div>
 
     <div class="card">
-        <h3>Cloud-Native ETL Framework</h3>
-        <p>
-            Reusable AWS Glue-based ETL framework supporting partitioned S3 outputs, 
-            validation rules, and scalable Spark transformations.
-        </p>
+        <h3>Reusable ETL Framework</h3>
+        <p>Production-ready Spark framework with partitioning, validation & automation.</p>
     </div>
 
     <div class="card">
-        <h3>PII Detection Email Scanner</h3>
-        <p>
-            Python-based system to scan outgoing emails and detect sensitive data 
-            to prevent compliance violations.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Dynamic Service Code Generator</h3>
-        <p>
-            AI-assisted tool that generates backend services dynamically 
-            using templates and structured inputs.
-        </p>
+        <h3>AI Service Generator</h3>
+        <p>Tool that dynamically generates backend services using structured inputs & templates.</p>
     </div>
 </section>
 
 <section id="contact">
     <h2>Contact</h2>
     <div class="card">
-        <p>If you're looking for a backend engineer or cloud specialist for your project, let's connect.</p>
-        <br/>
+        <p>Available for freelance backend & cloud projects.</p>
+        <br>
         <p>Email: your-email@example.com</p>
-        <p>LinkedIn: linkedin.com/in/yourprofile</p>
-        <br/>
-        <a href="#" class="btn">Hire Me</a>
     </div>
 </section>
 
 <footer>
-    © 2026 Abhishek Dhule | Backend & Cloud Engineer
+© 2026 Abhishek Dhule | Built with Precision
 </footer>
 
 <script>
-    // Scroll animation
-    const sections = document.querySelectorAll("section");
+// Scroll animation
+const sections = document.querySelectorAll("section");
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-        });
-    }, { threshold: 0.2 });
-
-    sections.forEach(section => {
-        observer.observe(section);
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
     });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
+
+// Mobile nav toggle
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+menu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
 </script>
 
 </body>
